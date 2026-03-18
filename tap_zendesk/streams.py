@@ -19,9 +19,9 @@ KEY_PROPERTIES = ['id']
 
 DEFAULT_PAGE_SIZE = 100
 REQUEST_TIMEOUT = 300
-CONCURRENCY_LIMIT = 20
+CONCURRENCY_LIMIT = 10
 # Reference: https://developer.zendesk.com/api-reference/introduction/rate-limits/#endpoint-rate-limits:~:text=List%20Audits%20for,requests%20per%20minute
-AUDITS_REQUEST_PER_MINUTE = 450
+AUDITS_REQUEST_PER_MINUTE = 400
 START_DATE_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
 HEADERS = {
     'Content-Type': 'application/json',
