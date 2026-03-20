@@ -435,6 +435,18 @@ class TicketAudits(Stream):
                         comment_records.append(
                             (comments_stream.stream, ticket_comment))
         except http.ZendeskNotFoundError:
+            LOGGER.warning(
+                "Unable to retrieve audits for ticket (ID: %s), "
+                "the Zendesk API returned a RecordNotFound error",
+                ticket_id,
+            )
+            return audit_records, comment_records
+        except http.ZendeskBackoffError as e:
+            LOGGER.warning(
+                "Skipping ticket (ID: %s) due to server error after retries: %s",
+                ticket_id,
+                str(e),
+            )
             return audit_records, comment_records
 
         return audit_records, comment_records
